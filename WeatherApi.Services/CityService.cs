@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using WeatherApi.Core.Abstractions;
 using WeatherApi.Core.Abstractions.Services;
 using WeatherApi.Core.Entities;
@@ -11,6 +10,7 @@ namespace WeatherApi.Services
     public class CityService: ICityService
     {
         private IUnitOfWork unitOfWork;
+       
         public CityService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;

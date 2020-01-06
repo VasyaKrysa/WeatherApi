@@ -34,6 +34,10 @@ namespace WeatherApi
 
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IOpenWeatherService, OpenWeatherService>();
+            services.AddScoped<ITemperatureService, TemperatureService>();
+            services.AddScoped<IPressureService, PressureService>();
+            services.AddScoped<IHumidityService, HumidityService>();
+            services.AddScoped<IWindSpeedService, WindSpeedService>();
 
             services.AddSwaggerGen(c =>
             {

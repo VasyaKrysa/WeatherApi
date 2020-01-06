@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WeatherApi.Core.Abstractions.Services;
 using WeatherApi.Core.Entities;
@@ -24,13 +25,6 @@ namespace WeatherApi.Controllers
             return result;
         }
 
-        //[HttpGet("{id}")]
-        //public ActionResult<City> GetById(int id)
-        //{
-        //    var result = _cityService.GetById(id);
-
-        //    return result;
-        //}
         [HttpGet("{name}")]
         public ActionResult<List<City>> GetByName(string name)
         {
@@ -42,7 +36,15 @@ namespace WeatherApi.Controllers
         [HttpPost]
         public ActionResult<City> Post(City city)
         {
-            var result = _cityService.Insert(city);
+            City result;
+            try
+            {
+                result = _cityService.Insert(city);
+            }
+            catch(ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
             return result;
         }

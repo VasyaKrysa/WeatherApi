@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using WeatherApi.Core.Abstractions.Repositories;
 using WeatherApi.Core.Entities;
 
@@ -18,7 +18,10 @@ namespace WeatherApi.DAL
 
         public virtual TEntity Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);
+            var includeEntity = _context.Set<TEntity>().Find(entity.Id);
+            if (includeEntity == null)
+                _context.Set<TEntity>().Add(entity);
+            else throw new ArgumentException("This value already in the database");
 
             return entity;
         }
@@ -30,6 +33,10 @@ namespace WeatherApi.DAL
                 _context.Set<TEntity>().Remove(entity);
             else
                 throw new Exception("Not found");
+        }
+        public virtual void RemoveAll()
+        {
+            _context.Set<TEntity>().RemoveRange(_context.Set<TEntity>());
         }
 
         public virtual void Edit(TEntity entity)
