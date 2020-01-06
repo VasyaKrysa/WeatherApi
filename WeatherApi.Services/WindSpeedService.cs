@@ -22,7 +22,6 @@ namespace WeatherApi.Services
         public List<WindSpeed> GetAll()
         {
             var result = unitOfWork.WindSpeedRepository.List().ToList();
-            unitOfWork.WindSpeedRepository.RemoveAll();
             unitOfWork.Save();
 
             return result;
@@ -30,10 +29,7 @@ namespace WeatherApi.Services
 
         public void Insert(List<WindSpeed> entities)
         {
-           foreach(var entity in entities)
-            {
-                unitOfWork.WindSpeedRepository.Add(entity);
-            }
+            unitOfWork.WindSpeedRepository.AddRange(entities);
             unitOfWork.Save();
         }
     }

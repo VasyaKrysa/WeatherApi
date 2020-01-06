@@ -10,7 +10,7 @@ namespace WeatherApi.Core.Entities
         
         public City City { get; set; }
         
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         
         public int Value { get; set; }
     }

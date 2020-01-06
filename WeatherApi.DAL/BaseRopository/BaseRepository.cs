@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using WeatherApi.Core.Abstractions.Repositories;
@@ -38,7 +39,10 @@ namespace WeatherApi.DAL
         {
             _context.Set<TEntity>().RemoveRange(_context.Set<TEntity>());
         }
-
+        public virtual void AddRange(IEnumerable<TEntity> entity)
+        {
+                _context.Set<TEntity>().AddRange(entity);
+        }
         public virtual void Edit(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;

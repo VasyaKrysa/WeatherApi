@@ -24,7 +24,6 @@ namespace WeatherApi.Services
         public List<Humidity> GetAll()
         {
             var result = unitOfWork.HumidityRepository.List().ToList();
-            unitOfWork.HumidityRepository.RemoveAll();
             unitOfWork.Save();
 
             return result;
@@ -32,10 +31,7 @@ namespace WeatherApi.Services
 
         public void Insert(List<Humidity> entities)
         {
-           foreach(var entity in entities)
-            {
-                unitOfWork.HumidityRepository.Add(entity);
-            }
+            unitOfWork.HumidityRepository.AddRange(entities);
             unitOfWork.Save();
         }
     }

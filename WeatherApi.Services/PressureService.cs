@@ -24,7 +24,6 @@ namespace WeatherApi.Services
         public List<Pressure> GetAll()
         {
             var result = unitOfWork.PressureRepository.List().ToList();
-            unitOfWork.PressureRepository.RemoveAll();
             unitOfWork.Save();
 
             return result;
@@ -32,10 +31,7 @@ namespace WeatherApi.Services
 
         public void Insert(List<Pressure> entities)
         {
-           foreach(var entity in entities)
-            {
-                unitOfWork.PressureRepository.Add(entity);
-            }
+            unitOfWork.PressureRepository.AddRange(entities);
             unitOfWork.Save();
         }
     }
