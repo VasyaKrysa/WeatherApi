@@ -12,7 +12,7 @@ namespace WeatherApi.DAL.EntityRepositories
         }
         public IQueryable<City> GetByName(string name)
         {
-            return List().Where(city => EF.Functions.Like(city.Name, "%"+name+"%"));
+            return List().Where(city => EF.Functions.Like(city.Name, "%"+name+"%")).Take(10);
         }
     }
 }
