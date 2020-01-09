@@ -29,7 +29,7 @@ Advanced level requirements:
 ## ToDo
 
 - в файлі appsettings.json змінити в "DatabaseConection" назву сервера на свою.
-- прогнати міграції до secondMigration, та створити базу.
+- створити базу з допогою update-database в проекті DAL.
 - в файлі startup.cs в стрічці 49 змінити налаштування CORS на адресу фронт сторони.
 
 (- позавантажувати потрібні бібліотеки)
